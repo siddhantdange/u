@@ -1,0 +1,9 @@
+
+*.pyc
+
+# csv data
+data/
+
+# .ipynb meta
+.ipynb_checkpoints/
+
