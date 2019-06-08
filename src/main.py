@@ -1,5 +1,6 @@
 
-from analyze.DriverMetrics import DriverMetrics
+# from analyze.DriverMetrics import DriverMetrics
+from analyze.SharedRides import SharedRides
 
-driver_metrics = DriverMetrics(['../data/trip_data/trip_data_sample_medium.csv'])
-driver_metrics.get_driver_metrics()
+shared_rides = SharedRides(['../data/trip_data/trip_data_sample_medium.csv'])
+shared_rides.get_driver_metrics()

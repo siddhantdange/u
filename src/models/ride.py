@@ -44,12 +44,26 @@ class Ride():
         if mod_dec > 0:
             scaled_mod = mod * (10**mod_dec)
 
-        rounded_num = rounded_num - (rounded_num % scaled)
+        rounded_num = rounded_num - (rounded_num % scaled_mod)
 
         if num_dec > 0:
             rounded_num = rounded_num/(10**num_dec)
 
         return rounded_num
+
+    def get_floored_pickup_lat_lon(self, mod):
+        return (self.get_floored_num(self.pickup_latitude, mod), self.get_floored_num(self.pickup_latitude, mod))
+
+    def get_floored_dropoff_lat_lon(self, mod):
+        return (self.get_floored_num(self.dropoff_latitude, mod), self.get_floored_num(self.dropoff_latitude, mod))
+
+    def get_floored_pickup_mins(self, mod):
+        pickup_mins = self.get_mins_since_midnight(self.pickup_datetime)
+        return self.get_floored_num(pickup_mins, mod)
+
+    def get_floored_dropoff_mins(self, mod):
+        dropoff_mins = self.get_mins_since_midnight(self.dropoff_datetime)
+        return self.get_floored_num(dropoff_mins, mod)
 
     def __str__(self):
         attr_dict = {
