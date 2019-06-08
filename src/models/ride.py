@@ -6,13 +6,13 @@ class Ride():
         self.driver = driver
         self.pickup_datetime = datetime.strptime(pickup_datetime, '%Y-%m-%d %H:%M:%S')
         self.dropoff_datetime = datetime.strptime(dropoff_datetime, '%Y-%m-%d %H:%M:%S')
-        self.passenger_count = passenger_count
-        self.trip_time_in_secs = trip_time_in_secs
-        self.trip_distance = trip_distance
-        self.pickup_longitude = pickup_longitude
-        self.pickup_latitude = pickup_latitude
-        self.dropoff_longitude = dropoff_longitude
-        self.dropoff_latitude = dropoff_latitude
+        self.passenger_count = int(passenger_count)
+        self.trip_time_in_secs = int(trip_time_in_secs)
+        self.trip_distance = float(trip_distance)
+        self.pickup_longitude = float(pickup_longitude)
+        self.pickup_latitude = float(pickup_latitude)
+        self.dropoff_longitude = float(dropoff_longitude)
+        self.dropoff_latitude = float(dropoff_latitude)
 
     def get_mins_since_midnight(self, d):
         return d.hour * 60 + d.minute
@@ -22,6 +22,15 @@ class Ride():
 
     def get_dropoff_mins(self):
         return self.get_mins_since_midnight(self.dropoff_datetime)
+
+    def get_ymd_str(self, date):
+        return str(date).split(' ')[0]
+
+    def get_pickup_day_str(self):
+        return self.get_ymd_str(self.pickup_datetime)
+
+    def get_dropoff_day_str(self):
+        return self.get_ymd_str(self.dropoff_datetime)
 
     def get_floored_num(self, num, mod):
         num_dec = str(num)[::-1].find('.')

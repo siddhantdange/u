@@ -1,5 +1,5 @@
 
+from analyze.DriverMetrics import DriverMetrics
 
-from io.RideReader import RideReader
-
-reader = RideReader('../data/trip_data/trip_data_1.csv')
+driver_metrics = DriverMetrics(['../data/trip_data/trip_data_sample_medium.csv'])
+driver_metrics.get_driver_metrics()
