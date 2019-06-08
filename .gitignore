@@ -7,3 +7,6 @@ data/
 # .ipynb meta
 .ipynb_checkpoints/
 
+# deps
+env/lib/python2.7/site-packages/*
+
