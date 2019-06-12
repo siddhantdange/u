@@ -23,6 +23,7 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+Run `./generate_small_medium_data_samples.sh # generates data samples, assumes downloaded data is in proper location as per 'Setup'`
 Run `./run_analytics.sh`
 
 *Be sure to use this script as the entrypoint to running the application*
