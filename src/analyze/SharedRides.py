@@ -22,6 +22,7 @@ class SharedRides(Analysis):
 
         latlons_grid = {}
 
+	# Create 'fuzzy' lat,lon,pickup_time by flooring to nearest ACCEPTABLE_PICKUP, ACCEPTABLE_TIME
         ACCEPTABLE_PICKUP = 0.003
         ACCEPTABLE_TIME = 5
         for i in range(reader.get_num_rows()):
@@ -38,6 +39,7 @@ class SharedRides(Analysis):
                 latlons_grid[key] = []
             latlons_grid[key].append(i)
 
+	# bucket by fuzzy computations and take ratio of (buckets.size > 1).num_rides / total_rides
         valid_shared_pickups = 0
         for k in latlons_grid.keys():
             t = latlons_grid[k]
@@ -48,5 +50,8 @@ class SharedRides(Analysis):
         print(valid_shared_pickups)
         print(reader.get_num_rows())
         return float(valid_shared_pickups) * 100/reader.get_num_rows()
+
         # problem 3
         # append destination + dropoff time in key and check > 1
+
+

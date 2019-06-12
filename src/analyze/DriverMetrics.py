@@ -20,15 +20,17 @@ class DriverMetrics(Analysis):
 
         print(message)
 
+    # median of trip durations
     def avg_trip_lengths(self):
         reader = RideReader(self.data_csvs[0])
         distances = reader.get_col_iter('trip_distance')
 
         return np.median(distances)
-
+    
     def avg_trips_per_hour_per_driver(self):
         reader = RideReader(self.data_csvs[0])
 
+        # compute number of rides per hour, per day, per driver
         driver_to_hours = {}
         for i in range(reader.get_num_rows()):
             ride = reader.get_ride_at_index(i)
@@ -47,6 +49,7 @@ class DriverMetrics(Analysis):
             if not ymd in driver_to_hours[ride.driver][ride.pickup_datetime.hour]['days']:
                 driver_to_hours[ride.driver][ride.pickup_datetime.hour]['days'].add(ymd)
 
+        # average number of rides taken on each hour per driver
         hour_averages = {}
         for hour in list(range(24)):
             hour_averages[hour] = []
@@ -56,6 +59,7 @@ class DriverMetrics(Analysis):
                 hour_avg = float(driver_to_hours[driver][hour]['count'])/len(driver_to_hours[driver][hour]['days'])
                 hour_averages[hour].append(hour_avg)
 
+        # average over all drivers
         hour_average = {}
         for hour in hour_averages.keys():
             hour_average[hour] = sum(hour_averages[hour])/len(hour_averages[hour])
